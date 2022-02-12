@@ -37,20 +37,20 @@ clean-local:
 	(cd $(srcdir); [ ! -f setup.py ] || $(PYTHON) setup.py clean -a)
 	rm -rf $(srcdir)/setup.py $(srcdir)/vici.egg-info $(builddir)/dist
 
-if PYTHON_EGGS_INSTALL
-install-exec-local: dist/vici-$(PYTHON_PACKAGE_VERSION)-py$(PYTHON_VERSION).egg
-	$(EASY_INSTALL) $(PYTHONEGGINSTALLDIR) \
-		dist/vici-$(PYTHON_PACKAGE_VERSION)-py$(PYTHON_VERSION).egg
-endif
+	if PYTHON_EGGS_INSTALL
+	install-exec-local: dist/vici-$(PYTHON_PACKAGE_VERSION)-py$(PYTHON_VERSION).egg
+		$(EASY_INSTALL) $(PYTHONEGGINSTALLDIR) \
+			dist/vici-$(PYTHON_PACKAGE_VERSION)-py$(PYTHON_VERSION).egg
+	endif
 
-if USE_TOX
-  TESTS_ENVIRONMENT = export TOX=$(TOX);
-  AM_TESTS_FD_REDIRECT = 1>&2
-  TESTS = tox.sh
-endif
+	if USE_TOX
+	TESTS_ENVIRONMENT = export TOX=$(TOX);
+	AM_TESTS_FD_REDIRECT = 1>&2
+	TESTS = tox.sh
+	endif
 
-if USE_PY_TEST
-  TESTS = $(PY_TEST)
-endif
+	if USE_PY_TEST
+	TESTS = $(PY_TEST)
+	endif
 
-.PHONY: package
+	.PHONY: package

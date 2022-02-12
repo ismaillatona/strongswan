@@ -1,0 +1,17 @@
+LICENSE
+MANIFEST.in
+README.rst
+pyproject.toml
+setup.py
+tox.ini
+src/avici/__init__.py
+src/avici/command_wrappers.py
+src/avici/protocol.py
+src/avici/session.py
+src/avici.egg-info/PKG-INFO
+src/avici.egg-info/SOURCES.txt
+src/avici.egg-info/dependency_links.txt
+src/avici.egg-info/requires.txt
+src/avici.egg-info/top_level.txt
+test/__init__.py
+test/test_protocol.py

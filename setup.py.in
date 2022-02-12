@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 import sys
 
 
@@ -6,20 +6,24 @@ with open('README.rst') as file:
     long_description = file.read()
 
 
+def get_packages():
+    pkgs = ['vici']
+    if sys.version_info >= (3, 6):
+        pkgs.append('asyncvici')
+    return pkgs
+
+
 setup(
-    name="avici",
-    version="1.0.0",
+    name="vici",
+    version="@EGG_VERSION@",
     description="Native Python interface for strongSwan's VICI protocol",
     long_description=long_description,
     author="strongSwan Project",
     author_email="info@strongswan.org",
     url="https://wiki.strongswan.org/projects/strongswan/wiki/Vici",
     license="MIT",
-    package_dir={"": "src"},
-    packages=find_packages(where="src"),
-    python_requires=">=3.6",
+    packages=get_packages(),
     include_package_data=True,
-    install_requires=[ "vici" ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
